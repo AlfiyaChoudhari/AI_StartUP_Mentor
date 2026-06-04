@@ -3,7 +3,7 @@ services:
     name: ai-startup-mentor
     env: static
     buildCommand: npm run build
-    publishPath: dist
+    publishDir: dist
     routes:
       # Rewrite all routes to index.html for React Router SPA support
       - type: rewrite
