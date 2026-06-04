@@ -4,10 +4,6 @@ services:
     runtime: static
     buildCommand: npm run build
     staticPublishPath: ./dist
-    envVars:
-      - key: VITE_SUPABASE_URL
-      - key: VITE_SUPABASE_ANON_KEY
-      - key: VITE_GROQ_API_KEY
     routes:
       # Rewrite all routes to index.html for React Router SPA support
       - type: rewrite
