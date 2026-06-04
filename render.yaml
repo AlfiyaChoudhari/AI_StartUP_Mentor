@@ -1,9 +1,9 @@
 services:
   - type: web
     name: ai-startup-mentor
-    env: static
+    runtime: static
     buildCommand: npm run build
-    publishDir: dist
+    staticPublishPath: ./dist
     envVars:
       - key: VITE_SUPABASE_URL
       - key: VITE_SUPABASE_ANON_KEY
