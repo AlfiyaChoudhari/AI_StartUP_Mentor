@@ -50,16 +50,25 @@ export async function validateIdea(title, description) {
     return simulateIdeaValidation(title, description);
   }
 
-  const systemPrompt = `You are an expert startup incubator director. Evaluate the startup idea provided by the user. 
+  const systemPrompt = `You are a friendly startup mentor and business advisor. Evaluate the startup idea provided by the user.
+Explain everything in very simple English that a 15-year-old student can easily understand.
+Rules:
+- Use simple and easy words only.
+- Use short sentences.
+- Avoid all business, startup, financial, and technical jargon.
+- Never use words like: monetization, scalability, unit economics, TAM, SAM, SOM, customer acquisition cost, venture capital, institutional capital, gross margin, market segmentation, operational efficiency, leverage, runway, traction, ecosystem, disruption, paradigm, optimization.
+- Replace difficult terms with simple explanations.
+- Give a score out of 100 with a simple reason.
+
 You MUST respond with a JSON object containing the following keys and strictly structured values:
 {
   "score": number (0-100),
-  "problemSolutionFit": "Detailed 2-3 sentence analysis of problem-solution fit",
-  "marketNeed": "Detailed 2-3 sentence analysis of market size, pain-point severity, and demand",
-  "scalability": "Detailed 2-3 sentence analysis of operational and technological scalability",
-  "revenuePotential": "Detailed 2-3 sentence analysis of business model, monetization strategies, and unit economics",
+  "problemSolutionFit": "Clearly explain what is good about the idea and how it solves the user's problem in 2 simple sentences.",
+  "marketNeed": "Explain who will use this and why they need it in 2 simple sentences.",
+  "scalability": "Explain if it is easy to grow this business or make it bigger in 2 simple sentences.",
+  "revenuePotential": "Explain how the business can earn money in 2 simple sentences.",
   "innovationScore": number (0-100),
-  "feedback": ["Constructive recommendation 1", "Constructive recommendation 2", "Constructive recommendation 3"]
+  "feedback": ["Practical suggestion for improvement 1", "Practical suggestion for improvement 2", "Practical suggestion for improvement 3"]
 }
 Do not write any markdown formatting or introductory text. Respond only with raw JSON.`;
 
@@ -83,15 +92,24 @@ export async function analyzeCompetitors(domain, description) {
     return simulateCompetitorAnalysis(domain, description);
   }
 
-  const systemPrompt = `You are a top-tier management consultant. Analyze the competitor landscape for the startup domain or idea.
+  const systemPrompt = `You are a friendly startup mentor and business advisor. Analyze the competitor landscape for the startup domain or idea.
+Explain everything in very simple English that a 15-year-old student can easily understand.
+Rules:
+- Use simple and easy words only.
+- Use short sentences.
+- Avoid all business, startup, financial, and technical jargon.
+- Never use words like: monetization, scalability, unit economics, TAM, SAM, SOM, customer acquisition cost, venture capital, institutional capital, gross margin, market segmentation, operational efficiency, leverage, runway, traction, ecosystem, disruption, paradigm, optimization.
+- Compare competitors using simple points.
+- Explain strengths and weaknesses in plain language.
+
 You MUST respond with a JSON object containing the following keys:
 {
   "competitors": [
-    { "name": "Competitor A", "strengths": "Strength description", "weaknesses": "Weakness description", "pricing": "Pricing model description", "audience": "Target audience description" },
-    { "name": "Competitor B", "strengths": "Strength description", "weaknesses": "Weakness description", "pricing": "Pricing model description", "audience": "Target audience description" },
-    { "name": "Competitor C", "strengths": "Strength description", "weaknesses": "Weakness description", "pricing": "Pricing model description", "audience": "Target audience description" }
+    { "name": "Competitor A", "strengths": "Strength description in simple terms", "weaknesses": "Weakness description in simple terms", "pricing": "How much they charge in simple terms", "audience": "Who uses them in simple terms" },
+    { "name": "Competitor B", "strengths": "Strength description in simple terms", "weaknesses": "Weakness description in simple terms", "pricing": "How much they charge in simple terms", "audience": "Who uses them in simple terms" },
+    { "name": "Competitor C", "strengths": "Strength description in simple terms", "weaknesses": "Weakness description in simple terms", "pricing": "How much they charge in simple terms", "audience": "Who uses them in simple terms" }
   ],
-  "competitiveAdvantage": ["Advantage tip 1", "Advantage tip 2", "Advantage tip 3"]
+  "competitiveAdvantage": ["How to stand out tip 1 in simple terms", "How to stand out tip 2", "How to stand out tip 3"]
 }
 Respond ONLY with a JSON object.`;
 
@@ -115,17 +133,24 @@ export async function generateBusinessPlan(title, description) {
     return simulateBusinessPlan(title, description);
   }
 
-  const systemPrompt = `You are a Venture Builder. Generate a professional business plan based on the startup idea.
+  const systemPrompt = `You are a friendly startup mentor and business advisor. Generate a simple business plan based on the startup idea.
+Explain everything in very simple English that a 15-year-old student can easily understand.
+Rules:
+- Use simple and easy words only.
+- Use short sentences.
+- Avoid all business, startup, financial, and technical jargon.
+- Never use words like: monetization, scalability, unit economics, TAM, SAM, SOM, customer acquisition cost, venture capital, institutional capital, gross margin, market segmentation, operational efficiency, leverage, runway, traction, ecosystem, disruption, paradigm, optimization.
+
 You MUST respond with a JSON object containing the following keys:
 {
-  "executiveSummary": "Paragraph outlining the vision, target, and core thesis",
-  "problemStatement": "Clear summary of the specific pain point being addressed",
-  "solution": "How the startup solves the problem uniquely",
-  "targetMarket": "Market segments, size (TAM/SAM/SOM), and demographics",
-  "revenueModel": "Pricing tiers, subscription/transaction models, and channels",
-  "marketingStrategy": "Go-to-market, customer acquisition cost considerations, and marketing channels",
-  "operationsPlan": "Tech stack, key partners, logistics, and legal requirements",
-  "financialPlan": "Projected expenses, funding needed, break-even parameters, and milestones"
+  "executiveSummary": "A short summary of what the business does in plain language",
+  "problemStatement": "Explain the main problem in plain language",
+  "solution": "Explain the solution in plain language",
+  "targetMarket": "Explain who will use it in plain language",
+  "revenueModel": "Explain how it can earn money in plain language",
+  "marketingStrategy": "Explain how to tell people about it in plain language",
+  "operationsPlan": "Explain how to build and run it in plain language",
+  "financialPlan": "Explain how much money is needed and what it will be spent on in plain language"
 }
 Respond ONLY with a JSON object.`;
 
@@ -149,20 +174,27 @@ export async function generatePitchDeck(title, description) {
     return simulatePitchDeck(title, description);
   }
 
-  const systemPrompt = `You are an expert VC pitch designer. Create a slide deck draft outline for this startup.
-You MUST respond with a JSON object containing the following keys. Keep each slide description highly punchy, professional, and readable (bullet points or short phrases).
+  const systemPrompt = `You are a friendly startup mentor and business advisor. Create a slide deck draft outline for this startup.
+Explain everything in very simple English that a 15-year-old student can easily understand.
+Rules:
+- Use simple and easy words only.
+- Use short sentences.
+- Avoid all business, startup, financial, and technical jargon.
+- Never use words like: monetization, scalability, unit economics, TAM, SAM, SOM, customer acquisition cost, venture capital, institutional capital, gross margin, market segmentation, operational efficiency, leverage, runway, traction, ecosystem, disruption, paradigm, optimization.
+
+You MUST respond with a JSON object containing the following keys. Keep each slide description highly simple, clear, and readable (bullet points or short phrases).
 {
   "slides": [
-    { "slideNumber": 1, "title": "Title Slide", "content": "Startup Name: [Name]. Slogan or brief vision statement." },
-    { "slideNumber": 2, "title": "The Problem", "content": "1-3 bullets on the major customer pain point and why it is urgent." },
-    { "slideNumber": 3, "title": "The Solution", "content": "1-3 bullets on the unique value proposition and how the product alleviates pain." },
-    { "slideNumber": 4, "title": "Market Opportunity", "content": "TAM, SAM, SOM metrics and growth trends of the market." },
-    { "slideNumber": 5, "title": "Business Model", "content": "How the business makes money: pricing, transaction fees, LTV expectations." },
-    { "slideNumber": 6, "title": "Traction", "content": "Current status: pilot results, user growth, pre-registrations, or milestones reached." },
-    { "slideNumber": 7, "title": "Competitor Analysis", "content": "Comparison grid showing how your startup differentiates on key parameters." },
-    { "slideNumber": 8, "title": "Financial Projections", "content": "3-year projected revenue, key margins, and time to break-even." },
-    { "slideNumber": 9, "title": "The Team", "content": "Core founders' expertise, industry experience, and crucial advisor roles." },
-    { "slideNumber": 10, "title": "Funding Ask", "content": "Amount of investment requested, use of proceeds (R&D, marketing, operations)." }
+    { "slideNumber": 1, "title": "Title Slide", "content": "Startup Name: [Name]. Simple description of what it does." },
+    { "slideNumber": 2, "title": "The Problem", "content": "1-3 bullets on the simple problem being solved." },
+    { "slideNumber": 3, "title": "The Solution", "content": "1-3 bullets on how the product makes life easier." },
+    { "slideNumber": 4, "title": "Who Will Use It", "content": "Who are the customers and how many there are." },
+    { "slideNumber": 5, "title": "How to Earn Money", "content": "How the business will charge customers or earn money." },
+    { "slideNumber": 6, "title": "How it is Going", "content": "Where the project is right now (e.g. prototype, test users)." },
+    { "slideNumber": 7, "title": "Other Similar Services", "content": "Who else does something similar and how this is better." },
+    { "slideNumber": 8, "title": "Money Needed", "content": "Simple explanation of how much money is needed and what it will buy." },
+    { "slideNumber": 9, "title": "The Team", "content": "Who is building it and what they are good at." },
+    { "slideNumber": 10, "title": "Next Steps", "content": "What the team needs to do next to launch." }
   ]
 }
 Respond ONLY with a JSON object.`;
@@ -187,9 +219,25 @@ export async function chatWithMentor(message, history) {
     return simulateMentorChat(message, history);
   }
 
-  const systemPrompt = `You are a legendary startup mentor (similar to Paul Graham, Marc Andreessen, and Naval Ravikant). 
-Provide strategic, clear, actionable, and inspiring guidance. Be direct and avoid generic corporate buzzwords.
-Format your response using professional markdown (bullet points, clear paragraphs).`;
+  const systemPrompt = `You are a friendly startup mentor and business advisor.
+Your job is to explain everything in very simple English that any common person, college student, or beginner can easily understand.
+Rules:
+- Act like a supportive, warm mentor.
+- Give direct and practical advice.
+- Avoid motivational speeches unless asked.
+- Use simple and easy words only.
+- Use short sentences.
+- Avoid business, startup, financial, and technical jargon.
+- If a difficult term is necessary, explain it in one simple sentence.
+- Write as if you are talking to a 15-year-old student.
+- Give practical examples whenever possible.
+- Use bullet points for better readability.
+- Never use complex consultant-style language.
+- Never use words like: monetization, scalability, unit economics, TAM, SAM, SOM, customer acquisition cost, venture capital, institutional capital, gross margin, market segmentation, operational efficiency, leverage, runway, traction, ecosystem, disruption, paradigm, optimization.
+- Replace difficult terms with simple explanations.
+- Focus on clarity over professionalism.
+- Every answer should be easy to understand within 30 seconds.
+Format your response using simple markdown (bullet points, short clear paragraphs).`;
 
   const messages = [
     { role: 'system', content: systemPrompt },
@@ -214,17 +262,23 @@ export async function assessInvestorReadiness(answers) {
     return simulateInvestorReadiness(answers);
   }
 
-  const systemPrompt = `You are a venture capitalist evaluating a pre-seed/seed startup. 
-Analyze the user's readiness answers.
+  const systemPrompt = `You are a friendly startup mentor and business advisor. Evaluate the user's readiness answers.
+Explain everything in very simple English that a 15-year-old student can easily understand.
+Rules:
+- Use simple and easy words only.
+- Use short sentences.
+- Avoid all business, startup, financial, and technical jargon.
+- Never use words like: monetization, scalability, unit economics, TAM, SAM, SOM, customer acquisition cost, venture capital, institutional capital, gross margin, market segmentation, operational efficiency, leverage, runway, traction, ecosystem, disruption, paradigm, optimization.
+
 You MUST respond with a JSON object containing the following keys:
 {
   "readinessScore": number (0-100),
-  "maturityRating": "Pre-Seed / Seed / Series A Ready / Not Ready",
-  "productEvaluation": "Detailed evaluation of their product maturity",
-  "marketEvaluation": "Detailed evaluation of their market size & growth potential",
-  "revenueEvaluation": "Detailed evaluation of their monetization & business model viability",
-  "teamEvaluation": "Detailed evaluation of their team strength",
-  "milestones": ["Milestone recommendation 1", "Milestone recommendation 2", "Milestone recommendation 3"]
+  "maturityRating": "Just Starting / Has Prototype / Ready to Sell / Growing",
+  "productEvaluation": "Evaluation of their product maturity in simple words",
+  "marketEvaluation": "Evaluation of who will buy it in simple words",
+  "revenueEvaluation": "Evaluation of how they will make money in simple words",
+  "teamEvaluation": "Evaluation of their team strength in simple words",
+  "milestones": ["Simple recommendation 1", "Simple recommendation 2", "Simple recommendation 3"]
 }
 Respond ONLY with a JSON object.`;
 
@@ -252,13 +306,20 @@ export async function generateSWOT(title, description) {
     return simulateSWOT(title, description);
   }
 
-  const systemPrompt = `You are a strategic startup auditor. Create a detailed SWOT analysis.
+  const systemPrompt = `You are a friendly startup mentor and business advisor. Create a detailed strengths, weaknesses, opportunities, and threats analysis.
+Explain everything in very simple English that a 15-year-old student can easily understand.
+Rules:
+- Use simple and easy words only.
+- Use short sentences.
+- Avoid all business, startup, financial, and technical jargon.
+- Never use words like: monetization, scalability, unit economics, TAM, SAM, SOM, customer acquisition cost, venture capital, institutional capital, gross margin, market segmentation, operational efficiency, leverage, runway, traction, ecosystem, disruption, paradigm, optimization.
+
 You MUST respond with a JSON object containing the following keys:
 {
-  "strengths": ["Strength 1", "Strength 2", "Strength 3"],
-  "weaknesses": ["Weakness 1", "Weakness 2", "Weakness 3"],
-  "opportunities": ["Opportunity 1", "Opportunity 2", "Opportunity 3"],
-  "threats": ["Threat 1", "Threat 2", "Threat 3"]
+  "strengths": ["Simple Strength 1", "Simple Strength 2", "Simple Strength 3"],
+  "weaknesses": ["Simple Weakness 1", "Simple Weakness 2", "Simple Weakness 3"],
+  "opportunities": ["Simple Opportunity 1", "Simple Opportunity 2", "Simple Opportunity 3"],
+  "threats": ["Simple Threat 1", "Simple Threat 2", "Simple Threat 3"]
 }
 Respond ONLY with a JSON object.`;
 
@@ -286,15 +347,15 @@ function simulateIdeaValidation(title, description) {
   
   return {
     score: baseScore,
-    problemSolutionFit: `The idea "${title}" addresses a clear user friction point. The described solution fits well by targeting the immediate symptoms, though long-term engagement requires deeper structural lock-in.`,
-    marketNeed: `Strong indicators of organic demand. Similar markets show active willingness-to-pay, though target customer segmentation needs refinement to lower customer acquisition costs.`,
-    scalability: `High operational scalability as a digital service. Unit economics will improve rapidly as user base scales, provided technology infrastructure is built modularly.`,
-    revenuePotential: `Healthy margin potential. Monetization is plausible through SaaS subscriptions or transaction-based models, yielding recurring revenue options.`,
+    problemSolutionFit: `The idea "${title}" solves a real problem that people face every day. Your solution directly addresses this need, making it very helpful for users.`,
+    marketNeed: `There is a good group of people who really want this. Similar services show that people are happy to pay for help, but you need to define exactly who your first users will be.`,
+    scalability: `It is easy to make this business grow because it is online. You can serve more users without spending a lot of extra money.`,
+    revenuePotential: `You can earn money by charging a simple monthly fee. This is a simple and proven way to make steady money.`,
     innovationScore: innovation,
     feedback: [
-      `Define user persona segments and start with a tight, localized MVP launch.`,
-      `Develop a low-cost distribution channel or content loop to bypass high ad-spend.`,
-      `Build a clear customer onboarding pathway to validate first-week engagement metrics.`
+      `Find a small group of users first and test your product with them.`,
+      `Share your idea on free forums or social media to find people who need it.`,
+      `Make a simple version of your product first to see if people like it.`
     ]
   };
 }
@@ -303,61 +364,61 @@ function simulateCompetitorAnalysis(domain, description) {
   return {
     competitors: [
       {
-        name: "Incumbents (Legacy Players)",
-        strengths: "Large market share, high capital reserves, recognized brands.",
-        weaknesses: "Slow execution cycles, bloated legacy codebases, expensive enterprise pricing.",
-        pricing: "High enterprise-tier subscription with long-term contracts.",
-        audience: "Enterprise executives, large-scale corporations."
+        name: "Big Old Companies",
+        strengths: "They have a lot of money and many people know their name.",
+        weaknesses: "They are very slow to make changes and charge a lot of money.",
+        pricing: "Very high prices with long contracts.",
+        audience: "Big corporations and offices."
       },
       {
-        name: "Niche Startups",
-        strengths: "Fast feature releases, modern developer UX, cheap starting tiers.",
-        weaknesses: "Poor security credentials, limited features, unstable runway/support.",
-        pricing: "$15 - $49 / user / month.",
-        audience: "Individual creators, SMBs, agile startup tech teams."
+        name: "New Small Apps",
+        strengths: "They build new things fast and are cheap to start.",
+        weaknesses: "They have few features and might not have good support.",
+        pricing: "$15 to $49 every month.",
+        audience: "Regular people, students, and small tech teams."
       },
       {
-        name: "Do-It-Yourself (DIY) Workflows",
-        strengths: "No software cost, built exactly to specific user workflows.",
-        weaknesses: "High maintenance time, lack of automated features, poor cross-team collaboration.",
-        pricing: "Free (internal build costs).",
-        audience: "Developers, technical founders, solo operators."
+        name: "Doing It Yourself",
+        strengths: "It is free and built exactly how the person wants.",
+        weaknesses: "It takes a lot of time to build and keep working.",
+        pricing: "Free, but takes your time.",
+        audience: "People who know how to build things themselves."
       }
     ],
     competitiveAdvantage: [
-      `Integrate key automation workflows that remove 90% of manual configuration tasks.`,
-      `Introduce a free/freemium self-serve tier to drive rapid organic developer adoption.`,
-      `Provide visual analytics that are directly exportable, which competitors lock behind enterprise tiers.`
+      `Make your app automatic so users do not have to do things by hand.`,
+      `Offer a free version so people can try it without paying first.`,
+      `Show clear, simple charts that other apps charge extra for.`
     ]
   };
 }
 
 function simulateBusinessPlan(title, description) {
   return {
-    executiveSummary: `"${title}" is a disruptive venture designed to solve critical inefficiencies in its target industry. By building a modern, user-friendly software solution, we aim to capture early market share within the first 12 months.`,
-    problemStatement: `Current solutions are slow, overly manual, and fragmented. Users waste valuable hours switching between platforms and manually consolidating data.`,
-    solution: `Our platform integrates AI automation with a unified database, reducing workflow completion time by up to 70% and providing instant executive summaries.`,
-    targetMarket: `The primary target market includes small to medium-sized business owners, operators, and startup teams. The global TAM is estimated at $12B, with a CAGR of 14.5%.`,
-    revenueModel: `A classic tiered SaaS model ($29/mo Starter, $79/mo Professional) combined with API credit usage fees for heavy data operations.`,
-    marketingStrategy: `Organic content marketing, product-led growth (PLG) mechanics via viral reporting sharing, and targeted developer relations sponsorships.`,
-    operationsPlan: `Developed with a lean team using serverless infrastructure, React frontend, and robust microservices. Customer support will be semi-automated with an AI help desk.`,
-    financialPlan: `Targeting break-even in month 14. Seed funding of $500k will be allocated 50% to engineering, 30% to growth/marketing, and 20% to operational runway.`
+    executiveSummary: `"${title}" is a simple service designed to solve an everyday problem. By making a simple website or app, we can help people save time and make their lives easier.`,
+    problemStatement: `The current way of doing things is slow and takes too much manual work. People waste a lot of time doing things by hand.`,
+    solution: `Our simple tool makes these tasks automatic, saving people hours of hard work every week.`,
+    targetMarket: `Our first users will be small business owners, students, and busy teams who need to save time.`,
+    revenueModel: `We will charge a simple monthly fee of $29 for the basic version and $79 for the advanced version.`,
+    marketingStrategy: `We will write helpful posts online and share our tool in forums where our users ask for help.`,
+    operationsPlan: `We will build a simple website. We only need a small team of developers and one helper for user questions.`,
+    financialPlan: `We need some starting money to pay for building the website and telling people about it.`
   };
 }
 
 function simulatePitchDeck(title, description) {
   return {
     slides: [
-      { slideNumber: 1, title: "Title Slide", content: `${title}: Empowering founders to build the future with automated insights.` },
-      { slideNumber: 2, title: "The Problem", content: "• High customer acquisition cost due to fragmented legacy platforms.\n• Manual work hours spent on data coordination.\n• Lack of real-time insights for early-stage operators." },
-      { slideNumber: 3, title: "The Solution", content: "• A consolidated dashboard that automates SaaS onboarding.\n• Real-time AI recommendations that act as virtual board advisors.\n• Dynamic, exportable reports that impress partners instantly." },
-      { slideNumber: 4, title: "Market Opportunity", "content": "• TAM: $15B global SaaS market size.\n• SAM: $4.5B targeting tech startups and digital-first agencies.\n• SOM: $300M attainable in the first 3 years of operations." },
-      { slideNumber: 5, title: "Business Model", content: "• Product-led growth freemium funnel.\n• Subscription plans starting at $29/month.\n• Enterprise custom licensing contracts." },
-      { slideNumber: 6, title: "Traction", content: "• 2,500+ waitlist signups in 3 weeks.\n• 15 pilot companies currently testing the beta release.\n• 40% weekly increase in user session times." },
-      { slideNumber: 7, title: "Competitor Analysis", content: "• Competitors: Legacy spreadsheet models and manual consultants.\n• Our advantage: 10x faster report generation, 1/100th of the cost, fully collaborative." },
-      { slideNumber: 8, title: "Financial Projections", content: "• Year 1: $120k ARR.\n• Year 2: $850k ARR.\n• Year 3: $3.2M ARR with 82% gross margins." },
-      { slideNumber: 9, title: "The Team", content: "• CEO: Former product manager at a scaleup.\n• CTO: Full-stack engineer with 8 years of SaaS experience.\n• Advisors: 2 venture-backed founders." },
-      { slideNumber: 10, title: "Funding Ask", content: "• Raising $750k Seed round.\n• Use of funds: 60% engineering hires, 25% marketing and growth, 15% operations." }
+      { slideNumber: 1, title: "Title Slide", content: `${title}: Helping people save time with simple automatic tools.` },
+      { slideNumber: 2, title: "The Problem", content: "• People waste too many hours doing tasks by hand.\n• Other tools are too hard to use.\n• It is hard to see your progress in real time." },
+      { slideNumber: 3, title: "The Solution", content: "• A simple page that does the work for you.\n• Easy tips that guide you step by step.\n• Simple reports you can share with others." },
+      { slideNumber: 4, title: "Who Will Use It", content: "• There are millions of small businesses that need this.\n• We are starting with young business owners and students." },
+      { slideNumber: 5, title: "How to Earn Money", content: "• Users can try it for free.\n• They pay a simple fee starting at $29/month for extra features." },
+      { slideNumber: 6, title: "How it is Going", content: "• Over 2,000 people are waiting to try it.\n• 15 small teams are testing the early version right now." },
+      { slideNumber: 7, title: "Other Similar Services", content: "• Other choices are slow and cost too much money.\n• Our tool is 10 times faster and much cheaper." },
+      { slideNumber: 8, title: "Money Needed", content: "• We need some money to hire helpers and pay for the servers." },
+      { slideNumber: 9, title: "The Team", content: "• Two founders who love building simple tools that help others." },
+      { slideNumber: 10, title: "Next Steps", content: "• Launch the first version and listen to what our users say." }
     ]
   };
 }
@@ -366,45 +427,46 @@ function simulateMentorChat(message, history) {
   const lowercase = message.toLowerCase();
   
   if (lowercase.includes('marketing') || lowercase.includes('grow') || lowercase.includes('customer')) {
-    return `### 💡 Mentor Growth Advice
+    return `### 💡 How to find your first users
+    
+To get your first 100 users, you should talk to people one by one. Do not spend money on online ads yet. You do not need ads to start.
 
-To get your first 100 customers, focus on **doing things that don't scale**. Don't spend money on Google or Facebook Ads yet—you don't have the data to optimize them.
-
-Here is what you need to do:
-1. **Cold Outbound:** Identify 50 high-potential prospects on LinkedIn. Write them personalized messages highlighting *their* pain point, not *your* product.
-2. **Online Communities:** Be active on Reddit, IndieHackers, and Discord where your users hang out. Answer questions helpfully without pitching, and mention your startup only when highly relevant.
-3. **Build in Public:** Share your journey, struggles, and metrics on Twitter/X or LinkedIn. It builds an organic trust engine.`;
+Here is what you can do:
+- **Send direct messages:** Find 50 people on social media or LinkedIn who might need your help. Write them a friendly, personal note. Ask about their problems, do not just sell your product.
+- **Join online groups:** Go to groups on Reddit or Discord where your users talk. Answer their questions nicely. Only talk about your product if it really helps them.
+- **Share your story:** Write about how you are building your business. People love to support real founders who share their journey.`;
   }
   
   if (lowercase.includes('fund') || lowercase.includes('investor') || lowercase.includes('raise') || lowercase.includes('pitch')) {
-    return `### 💰 Mentor Funding Strategy
+    return `### 💰 How to get help with money
+    
+Before you ask anyone for money, you need to show that people want what you are building.
 
-Raising capital is a sales funnel. Before you pitch a single VC, you must establish **leverage**:
-
-- **Traction first:** Investors care about numbers. 20% month-over-month user growth beats a perfect slide deck every time.
-- **Warm introductions:** Cold emails to VCs have a <1% conversion rate. Find mutual connections on LinkedIn or ask other founders they have invested in for an intro.
-- **The "Ask" clarity:** Be crystal clear about how much you need, how long it gives you (aim for 18 months of runway), and exactly what milestones it unlocks (e.g., reaching $50k MRR).`;
+Here is a simple plan:
+- **Show progress first:** People want to help businesses that are already growing. Having 20 new users every week is better than having a perfect slide show.
+- **Ask for introductions:** Cold emails rarely work. Find friends or other founders who can introduce you to people with money.
+- **Be clear about the money:** Know exactly how much money you need, how long it will last (aim for 18 months), and what you will build with it.`;
   }
 
   if (lowercase.includes('price') || lowercase.includes('monetize') || lowercase.includes('revenue')) {
-    return `### 💸 Mentor Pricing Recommendation
-
-Most founders undercharge because of imposter syndrome. 
-1. **Avoid the race to the bottom:** Charging $5/month means you need thousands of customers to survive. Charge a premium and support those customers exceptionally.
-2. **Value-based pricing:** Price based on the money or time you save the customer. If you save an employee 10 hours a week ($300 value), charging $49/month is a no-brainer.
-3. **Keep it simple:** Start with 2 clear tiers: a self-serve tier for single users, and an team tier with collaboration features.`;
+    return `### 💸 How to set your prices
+    
+Many beginners set their prices too low because they are shy.
+- **Do not charge too little:** Charging $5 a month means you need thousands of customers to make a living. It is better to charge a fair price and give great help.
+- **Price based on value:** Think about how much time or money you save the user. If you save them 10 hours a week, charging $49 a month is a great deal for them.
+- **Keep it simple:** Start with just two choices: one for single users and one for teams.`;
   }
 
-  return `### 👋 Hello Founder!
+  return `### 👋 Hello!
+  
+Building a startup is about finding out what people really need. Most new projects fail because they build something that nobody actually wants to use.
 
-Building a startup is about finding **truth** in the market. Most startups fail because they build something nobody actually wants.
+Here are three simple things to do this week:
+- **Talk to users:** Spend at least 5 hours talking to your target users. Ask them what they do every day and what they dislike about it.
+- **Build a simple test:** Make a very basic version of your tool that does just one thing really well. Do not build a huge app yet.
+- **Watch what they do:** Do not ask them "would you use this?" Ask them to sign up or give you a small amount of money. Actions are real, words are just promises.
 
-Here are three rules to follow this week:
-- **Talk to users:** Spend at least 5 hours talking directly to people in your target market. Ask them about their daily workflows and what they hate doing.
-- **Build fast:** Launch an MVP that does *one thing* exceptionally well. Don't build a massive dashboard if they just need a simple tool.
-- **Measure behavior:** Don't ask users "would you buy this?" Ask them to sign up, input data, or pay a pre-order fee. Actions speak louder than surveys.
-
-What specific problem are you trying to tackle right now? Let's narrow it down.`;
+What specific problem are you working on right now? Let's talk about it!`;
 }
 
 function simulateInvestorReadiness(answers) {
@@ -416,22 +478,22 @@ function simulateInvestorReadiness(answers) {
   const rawScore = Math.round((stageScore + validationScore + 50) / 2);
   const readinessScore = Math.min(95, Math.max(15, rawScore));
 
-  let rating = "Not Ready";
-  if (readinessScore > 75) rating = "Series A Ready";
-  else if (readinessScore > 55) rating = "Seed Ready";
-  else if (readinessScore > 35) rating = "Pre-Seed Ready";
+  let rating = "Just Starting";
+  if (readinessScore > 75) rating = "Growing";
+  else if (readinessScore > 55) rating = "Ready to Sell";
+  else if (readinessScore > 35) rating = "Has Prototype";
 
   return {
     readinessScore,
     maturityRating: rating,
-    productEvaluation: `Product is in the "${answers.productStage}" stage. To attract institutional capital, focus on stabilizing core features, reducing load latency, and establishing a clear roadmap of customer-driven feature requests.`,
-    marketEvaluation: `Market validation relies on "${answers.marketValidation}". Standard survey data is soft; VCs will want to see letters of intent (LOIs), active pilot engagements, or growing transactional revenue.`,
-    revenueEvaluation: `Revenue strategy is set to "${answers.revenueModel}". This model has good scalability, but you must define the Unit Economics (LTV/CAC ratio) and target a high gross margin (>70%).`,
-    teamEvaluation: `Team composition is described as "${answers.teamStrength}". Ensure you have a clear split of technical execution capability and sales/growth ownership to reduce execution risk.`,
+    productEvaluation: `Your product is in the "${answers.productStage}" stage. Focus on making the main features work smoothly and fixing any errors before you try to sell it to more people.`,
+    marketEvaluation: `You checked interest using "${answers.marketValidation}". Surveys are a good start, but it is much better to have real users who are testing your prototype or paying money.`,
+    revenueEvaluation: `You chose the "${answers.revenueModel}" model. This is a good way to earn money, but you must make sure it costs less to build and sell than what customers pay.`,
+    teamEvaluation: `Your team setup is "${answers.teamStrength}". Make sure you have one person to build the tool and one person to talk to users and sell it.`,
     milestones: [
-      `Secure at least 3 formal pilot customers or letters of intent (LOIs).`,
-      `Document a repeatable customer acquisition channel with clear cost metrics.`,
-      `Finalize a clickable MVP prototype showing a completed core user journey.`
+      `Get at least 3 test users who promise to use your product regularly.`,
+      `Find one free way to tell people about your product without paying for ads.`,
+      `Make a simple working version of your product that users can click and try.`
     ]
   };
 }
@@ -439,24 +501,24 @@ function simulateInvestorReadiness(answers) {
 function simulateSWOT(title, description) {
   return {
     strengths: [
-      "Agile team structure enabling fast shipping speed.",
-      "Lower operational costs compared to bulky legacy competitors.",
-      "Clear focus on an underserved market niche."
+      "You can make changes very fast because your team is small.",
+      "It costs you very little money to run this business right now.",
+      "You are focusing on a clear, simple problem that big apps ignore."
     ],
     weaknesses: [
-      "Low initial brand recognition in a busy space.",
-      "Limited marketing budget for high-volume customer acquisition.",
-      "High dependency on external API provider infrastructure."
+      "People do not know your brand name yet.",
+      "You do not have a lot of money to spend on marketing.",
+      "You depend on other systems to make your product work."
     ],
     opportunities: [
-      "Emerging regulatory/market shifts demanding automated reporting tools.",
-      "Potential partnerships with startup accelerators or SaaS hubs.",
-      "Expansion into adjacent vertical workflows as users mature."
+      "New changes in the market make people look for simple tools.",
+      "You can partner with student groups or local communities.",
+      "You can add more features as your users grow."
     ],
     threats: [
-      "Rapid feature duplication by large, well-funded incumbents.",
-      "Increases in standard developer hosting or third-party API costs.",
-      "Economic downturn forcing target SMB clients to cut tool budgets."
+      "Big companies might copy your simple features if they see you succeed.",
+      "Other tools might lower their prices to compete with you.",
+      "Users might stop paying if they need to cut their personal budgets."
     ]
   };
 }
